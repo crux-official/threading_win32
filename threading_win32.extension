@@ -1,20 +1,13 @@
-# The Windows implementation of the threading concern (its
-# implementation package; the concern interface is the threading
-# package): the identical pool on the Win32 primitives - CreateThread
-# workers, a CRITICAL_SECTION queue, and the two manual-reset events
-# (the work event the queue's 0->1/1->0 invariant drives, the done event
-# the last completer sets). Untestable on a linux host (no MSVC) - the
-# cell composes and signs, the cross-compile links; execution needs a
-# Windows machine.
-format_version = 1
+format_version = 2
 name   = "threading_win32"
 kind   = "implementation"
-api    = "threading"
-supported_platforms = ["windows"]
-version        = "1.0.0"
-implements_api = "1.0.0"
+version = "2.0.0"
+implements = [
+  { interface = "threading", window = "1.0.0" },
+]
 requires = [
-  { package = "threading", window = "1.0.0" },
   { package = "memory", window = "1.1.0" },
   { package = "logging", window = "1.1.0" },
 ]
+source   = "threading_win32.c"
+supported_platforms = ["windows"]
